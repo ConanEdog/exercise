@@ -12,6 +12,7 @@
 		32588A532B44F4D40015E3D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32588A522B44F4D40015E3D2 /* ViewController.swift */; };
 		32588A582B44F4D50015E3D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32588A572B44F4D50015E3D2 /* Assets.xcassets */; };
 		32588A5B2B44F4D50015E3D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32588A592B44F4D50015E3D2 /* LaunchScreen.storyboard */; };
+		32588A642B4507840015E3D2 /* PasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32588A632B4507840015E3D2 /* PasswordTextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		32588A572B44F4D50015E3D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32588A5A2B44F4D50015E3D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32588A5C2B44F4D50015E3D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32588A632B4507840015E3D2 /* PasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				32588A4E2B44F4D40015E3D2 /* AppDelegate.swift */,
 				32588A502B44F4D40015E3D2 /* SceneDelegate.swift */,
 				32588A522B44F4D40015E3D2 /* ViewController.swift */,
+				32588A632B4507840015E3D2 /* PasswordTextFieldView.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			files = (
 				32588A532B44F4D40015E3D2 /* ViewController.swift in Sources */,
 				32588A4F2B44F4D40015E3D2 /* AppDelegate.swift in Sources */,
+				32588A642B4507840015E3D2 /* PasswordTextFieldView.swift in Sources */,
 				32588A512B44F4D40015E3D2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
