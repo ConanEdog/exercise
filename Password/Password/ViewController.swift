@@ -11,8 +11,10 @@ class ViewController: UIViewController {
 
     lazy var stackView: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [
-        //newPasswordTextField,
-        criteriaView
+        newPasswordTextField,
+        statusView,
+        confirmPasswordTextField,
+        resetButton
        ])
         stackView.axis = .vertical
         stackView.spacing = 20
@@ -21,7 +23,9 @@ class ViewController: UIViewController {
     }()
     
     let newPasswordTextField = PasswordTextFieldView(placeHolderText: "New password")
-    let criteriaView = PasswordCriteriaView(text: "uppercase letter (A-Z)")
+    let statusView = PasswordStatusView()
+    let confirmPasswordTextField = PasswordTextFieldView(placeHolderText: "Re-enter new password")
+    let resetButton = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +35,17 @@ class ViewController: UIViewController {
 
     func style() {
         newPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        criteriaView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        statusView.layer.cornerRadius = 5
+        stackView.clipsToBounds = true
+        
+        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        resetButton.configuration = .filled()
+        resetButton.setTitle("Reset password", for: [])
+        //resetButton.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .primaryActionTriggered)
     }
     
     func layout() {
