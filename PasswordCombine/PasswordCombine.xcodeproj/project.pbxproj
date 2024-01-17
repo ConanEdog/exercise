@@ -12,6 +12,14 @@
 		32D1778B2B57C84400C867FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1778A2B57C84400C867FE /* ViewController.swift */; };
 		32D177902B57C84600C867FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D1778F2B57C84600C867FE /* Assets.xcassets */; };
 		32D177932B57C84600C867FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D177912B57C84600C867FE /* LaunchScreen.storyboard */; };
+		32D1779D2B57C9EC00C867FE /* PasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1779C2B57C9EC00C867FE /* PasswordTextFieldView.swift */; };
+		32D177A02B57CA2300C867FE /* PasswordCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1779F2B57CA2300C867FE /* PasswordCriteriaView.swift */; };
+		32D177A22B57CA3900C867FE /* PasswordStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177A12B57CA3900C867FE /* PasswordStatusView.swift */; };
+		32D177A42B57CA4E00C867FE /* PasswordCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177A32B57CA4E00C867FE /* PasswordCriteria.swift */; };
+		32D177A72B57CA7D00C867FE /* UIResponder+Uitils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177A62B57CA7D00C867FE /* UIResponder+Uitils.swift */; };
+		32D177AA2B57CB8900C867FE /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 32D177A92B57CB8900C867FE /* CombineCocoa */; };
+		32D177AC2B57CCE400C867FE /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177AB2B57CCE400C867FE /* PasswordViewModel.swift */; };
+		32D177B02B57D15000C867FE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177AF2B57D15000C867FE /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,13 @@
 		32D1778F2B57C84600C867FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32D177922B57C84600C867FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32D177942B57C84600C867FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32D1779C2B57C9EC00C867FE /* PasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldView.swift; sourceTree = "<group>"; };
+		32D1779F2B57CA2300C867FE /* PasswordCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCriteriaView.swift; sourceTree = "<group>"; };
+		32D177A12B57CA3900C867FE /* PasswordStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStatusView.swift; sourceTree = "<group>"; };
+		32D177A32B57CA4E00C867FE /* PasswordCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCriteria.swift; sourceTree = "<group>"; };
+		32D177A62B57CA7D00C867FE /* UIResponder+Uitils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Uitils.swift"; sourceTree = "<group>"; };
+		32D177AB2B57CCE400C867FE /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		32D177AF2B57D15000C867FE /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D177AA2B57CB8900C867FE /* CombineCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				32D177852B57C84400C867FE /* PasswordCombine */,
+				32D177A52B57CA6000C867FE /* Utils */,
 				32D177842B57C84400C867FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,8 +77,46 @@
 				32D1778F2B57C84600C867FE /* Assets.xcassets */,
 				32D177912B57C84600C867FE /* LaunchScreen.storyboard */,
 				32D177942B57C84600C867FE /* Info.plist */,
+				32D1779C2B57C9EC00C867FE /* PasswordTextFieldView.swift */,
+				32D177AE2B57D13700C867FE /* Model */,
+				32D177AD2B57CCF800C867FE /* ViewModel */,
+				32D1779E2B57CA0000C867FE /* PasswordStatusView */,
 			);
 			path = PasswordCombine;
+			sourceTree = "<group>";
+		};
+		32D1779E2B57CA0000C867FE /* PasswordStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				32D1779F2B57CA2300C867FE /* PasswordCriteriaView.swift */,
+				32D177A12B57CA3900C867FE /* PasswordStatusView.swift */,
+				32D177A32B57CA4E00C867FE /* PasswordCriteria.swift */,
+			);
+			path = PasswordStatusView;
+			sourceTree = "<group>";
+		};
+		32D177A52B57CA6000C867FE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				32D177A62B57CA7D00C867FE /* UIResponder+Uitils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		32D177AD2B57CCF800C867FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				32D177AB2B57CCE400C867FE /* PasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		32D177AE2B57D13700C867FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32D177AF2B57D15000C867FE /* Result.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +135,9 @@
 			dependencies = (
 			);
 			name = PasswordCombine;
+			packageProductDependencies = (
+				32D177A92B57CB8900C867FE /* CombineCocoa */,
+			);
 			productName = PasswordCombine;
 			productReference = 32D177832B57C84400C867FE /* PasswordCombine.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +166,9 @@
 				Base,
 			);
 			mainGroup = 32D1777A2B57C84400C867FE;
+			packageReferences = (
+				32D177A82B57CB8900C867FE /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+			);
 			productRefGroup = 32D177842B57C84400C867FE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,8 +195,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D177A72B57CA7D00C867FE /* UIResponder+Uitils.swift in Sources */,
+				32D177AC2B57CCE400C867FE /* PasswordViewModel.swift in Sources */,
 				32D1778B2B57C84400C867FE /* ViewController.swift in Sources */,
+				32D1779D2B57C9EC00C867FE /* PasswordTextFieldView.swift in Sources */,
+				32D177A02B57CA2300C867FE /* PasswordCriteriaView.swift in Sources */,
+				32D177A22B57CA3900C867FE /* PasswordStatusView.swift in Sources */,
+				32D177B02B57D15000C867FE /* Result.swift in Sources */,
 				32D177872B57C84400C867FE /* AppDelegate.swift in Sources */,
+				32D177A42B57CA4E00C867FE /* PasswordCriteria.swift in Sources */,
 				32D177892B57C84400C867FE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +415,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		32D177A82B57CB8900C867FE /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		32D177A92B57CB8900C867FE /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32D177A82B57CB8900C867FE /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 32D1777B2B57C84400C867FE /* Project object */;
 }
