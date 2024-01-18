@@ -32,12 +32,22 @@ class ViewController: UIViewController {
     private let vm = PasswordViewModel()
     private var cancellables = Set<AnyCancellable>()
     
+    private lazy var viewTapPublisher: AnyPublisher<Void, Never> = {
+        let tapGesture = UITapGestureRecognizer(target: self, action: nil)
+        view.addGestureRecognizer(tapGesture)
+        
+        return tapGesture.tapPublisher.flatMap { _ in
+            Just(())
+        }.eraseToAnyPublisher()
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        
         style()
         layout()
         bind()
+        observe()
     }
     
     private func bind() {
@@ -58,37 +68,35 @@ class ViewController: UIViewController {
         }.store(in: &cancellables)
     }
     
-    func setup() {
-        setupDismissKeyboardGesture()
-        setupKeyboardHiding()
-    }
-    
-    private func setupDismissKeyboardGesture() {
-        let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
-        view.addGestureRecognizer(dismissKeyboardTap)
-    }
-    
-    @objc func viewTapped(_ recognizer: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
-    
-    private func setupKeyboardHiding() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(sender: NSNotification) {
-        guard let userInfo = sender.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
+    private func observe() {
         
-//        print("foo - userInfo: \(userInfo)")
-//        print("foo - keyboardFrame: \(keyboardFrame)")
-//        print("foo - currentTextField: \(currentTextField)")
+        viewTapPublisher.sink { [unowned self] () in
+            view.endEditing(true)
+        }.store(in: &cancellables)
         
+        observeKeyboard()
+    }
+    
+    
+    private func observeKeyboard() {
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).compactMap { notification in
+            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        }.sink { [unowned self] keyboardFrame in
+            self.adjustViewFrame(keyboardFrame: keyboardFrame)
+        }.store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).sink { [unowned self] _ in
+            self.view.frame.origin.y = 0
+        }.store(in: &cancellables)
+        
+    }
+    
+    private func adjustViewFrame(keyboardFrame: CGRect) {
+        
+        guard let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
         // check if the top of the keyboard is above the bottom of the currently focused textbox
-        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let keyboardTopY = keyboardFrame.origin.y
         
         let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
         
@@ -100,14 +108,8 @@ class ViewController: UIViewController {
             let newFrameY = (textBoxY - keyboardTopY / 2) * -1
             view.frame.origin.y = newFrameY
         }
-        
-//        print("foo - currentTextFieldFrame: \(currentTextField.frame)")
-//        print("foo - convertedTextFieldFrame: \(convertedTextFieldFrame)")
     }
     
-    @objc func keyboardWillHide(sender: NSNotification) {
-        view.frame.origin.y = 0
-    }
 
     func style() {
         newPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
