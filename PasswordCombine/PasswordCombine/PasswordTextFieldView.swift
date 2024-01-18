@@ -74,7 +74,6 @@ class PasswordTextFieldView: UIView {
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         errorLabel.textColor = .systemRed
         errorLabel.font = .preferredFont(forTextStyle: .footnote)
-        errorLabel.text = "Enter your password aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa sdfd fdfe ferr"
 //        errorLabel.adjustsFontSizeToFitWidth = true
 //        errorLabel.minimumScaleFactor = 0.8
         errorLabel.numberOfLines = 0
@@ -113,7 +112,9 @@ class PasswordTextFieldView: UIView {
     }
     
     private func observe() {
-        textField.textPublisher.sink { [unowned self] text in
+        textField.textPublisher
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
+            .sink { [unowned self] text in
             self.passwordSubject.send(text ?? "")
         }.store(in: &cancellables)
     }
