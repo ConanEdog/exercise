@@ -142,7 +142,9 @@ class ViewController: UIViewController {
         
         if isValidNewPassword && isValidConfirmPassword {
             showAlert(title: "Success", message: "You have successfully changed your password.")
+            return
         }
+        resetButton.shakeButton()
     }
     
     private func showAlert(title: String, message: String) {

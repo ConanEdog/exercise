@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3233D9F92B58C04900E8F700 /* UIButton+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233D9F82B58C04900E8F700 /* UIButton+Utils.swift */; };
 		32D177872B57C84400C867FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177862B57C84400C867FE /* AppDelegate.swift */; };
 		32D177892B57C84400C867FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D177882B57C84400C867FE /* SceneDelegate.swift */; };
 		32D1778B2B57C84400C867FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1778A2B57C84400C867FE /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3233D9F82B58C04900E8F700 /* UIButton+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Utils.swift"; sourceTree = "<group>"; };
 		32D177832B57C84400C867FE /* PasswordCombine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordCombine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D177862B57C84400C867FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D177882B57C84400C867FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				32D177A62B57CA7D00C867FE /* UIResponder+Uitils.swift */,
+				3233D9F82B58C04900E8F700 /* UIButton+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				32D1779D2B57C9EC00C867FE /* PasswordTextFieldView.swift in Sources */,
 				32D177A02B57CA2300C867FE /* PasswordCriteriaView.swift in Sources */,
 				32D177A22B57CA3900C867FE /* PasswordStatusView.swift in Sources */,
+				3233D9F92B58C04900E8F700 /* UIButton+Utils.swift in Sources */,
 				32D177B02B57D15000C867FE /* Result.swift in Sources */,
 				32D177872B57C84400C867FE /* AppDelegate.swift in Sources */,
 				32D177A42B57CA4E00C867FE /* PasswordCriteria.swift in Sources */,
