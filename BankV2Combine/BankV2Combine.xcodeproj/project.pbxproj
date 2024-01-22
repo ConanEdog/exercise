@@ -12,6 +12,16 @@
 		3272B7062B5E3D8700BF3623 /* TabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7052B5E3D8700BF3623 /* TabVC.swift */; };
 		3272B70B2B5E3D8800BF3623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3272B70A2B5E3D8800BF3623 /* Assets.xcassets */; };
 		3272B70E2B5E3D8800BF3623 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3272B70C2B5E3D8800BF3623 /* LaunchScreen.storyboard */; };
+		3272B7182B5E445C00BF3623 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7172B5E445C00BF3623 /* TabView.swift */; };
+		3272B71A2B5E491300BF3623 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7192B5E491300BF3623 /* Tab.swift */; };
+		3272B71D2B5E4A9400BF3623 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B71C2B5E4A9400BF3623 /* UIButton + Extension.swift */; };
+		3272B7202B5E4B5800BF3623 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3272B71F2B5E4B5800BF3623 /* CombineCocoa */; };
+		3272B7222B5E5E2700BF3623 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7212B5E5E2700BF3623 /* UIColor + Extension.swift */; };
+		3272B7252B5E5E6500BF3623 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7242B5E5E6500BF3623 /* ThemeColor.swift */; };
+		3272B7272B5E60B500BF3623 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7262B5E60B500BF3623 /* HomeViewController.swift */; };
+		3272B7292B5E60DC00BF3623 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7282B5E60DC00BF3623 /* AccountViewController.swift */; };
+		3272B72B2B5E60E800BF3623 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B72A2B5E60E800BF3623 /* LocationViewController.swift */; };
+		3272B72D2B5E60F600BF3623 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B72C2B5E60F600BF3623 /* ServiceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +32,15 @@
 		3272B70A2B5E3D8800BF3623 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3272B70D2B5E3D8800BF3623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3272B70F2B5E3D8800BF3623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3272B7172B5E445C00BF3623 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		3272B7192B5E491300BF3623 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		3272B71C2B5E4A9400BF3623 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		3272B7212B5E5E2700BF3623 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		3272B7242B5E5E6500BF3623 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		3272B7262B5E60B500BF3623 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3272B7282B5E60DC00BF3623 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		3272B72A2B5E60E800BF3623 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		3272B72C2B5E60F600BF3623 /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3272B7202B5E4B5800BF3623 /* CombineCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +74,55 @@
 		3272B7002B5E3D8700BF3623 /* BankV2Combine */ = {
 			isa = PBXGroup;
 			children = (
+				3272B7232B5E5E5600BF3623 /* Utils */,
+				3272B71B2B5E4A7800BF3623 /* Extensions */,
+				3272B7152B5E441F00BF3623 /* TabBarVC */,
 				3272B7012B5E3D8700BF3623 /* AppDelegate.swift */,
 				3272B7032B5E3D8700BF3623 /* SceneDelegate.swift */,
-				3272B7052B5E3D8700BF3623 /* TabVC.swift */,
 				3272B70A2B5E3D8800BF3623 /* Assets.xcassets */,
 				3272B70C2B5E3D8800BF3623 /* LaunchScreen.storyboard */,
 				3272B70F2B5E3D8800BF3623 /* Info.plist */,
+				3272B7262B5E60B500BF3623 /* HomeViewController.swift */,
+				3272B7282B5E60DC00BF3623 /* AccountViewController.swift */,
+				3272B72A2B5E60E800BF3623 /* LocationViewController.swift */,
+				3272B72C2B5E60F600BF3623 /* ServiceViewController.swift */,
 			);
 			path = BankV2Combine;
+			sourceTree = "<group>";
+		};
+		3272B7152B5E441F00BF3623 /* TabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				3272B7192B5E491300BF3623 /* Tab.swift */,
+				3272B7162B5E443D00BF3623 /* Views */,
+				3272B7052B5E3D8700BF3623 /* TabVC.swift */,
+			);
+			path = TabBarVC;
+			sourceTree = "<group>";
+		};
+		3272B7162B5E443D00BF3623 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3272B7172B5E445C00BF3623 /* TabView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3272B71B2B5E4A7800BF3623 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3272B71C2B5E4A9400BF3623 /* UIButton + Extension.swift */,
+				3272B7212B5E5E2700BF3623 /* UIColor + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3272B7232B5E5E5600BF3623 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3272B7242B5E5E6500BF3623 /* ThemeColor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +141,9 @@
 			dependencies = (
 			);
 			name = BankV2Combine;
+			packageProductDependencies = (
+				3272B71F2B5E4B5800BF3623 /* CombineCocoa */,
+			);
 			productName = BankV2Combine;
 			productReference = 3272B6FE2B5E3D8700BF3623 /* BankV2Combine.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +172,9 @@
 				Base,
 			);
 			mainGroup = 3272B6F52B5E3D8700BF3623;
+			packageReferences = (
+				3272B71E2B5E4B5700BF3623 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+			);
 			productRefGroup = 3272B6FF2B5E3D8700BF3623 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,9 +201,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3272B7222B5E5E2700BF3623 /* UIColor + Extension.swift in Sources */,
 				3272B7062B5E3D8700BF3623 /* TabVC.swift in Sources */,
+				3272B72D2B5E60F600BF3623 /* ServiceViewController.swift in Sources */,
 				3272B7022B5E3D8700BF3623 /* AppDelegate.swift in Sources */,
+				3272B71A2B5E491300BF3623 /* Tab.swift in Sources */,
+				3272B7182B5E445C00BF3623 /* TabView.swift in Sources */,
+				3272B72B2B5E60E800BF3623 /* LocationViewController.swift in Sources */,
+				3272B7272B5E60B500BF3623 /* HomeViewController.swift in Sources */,
+				3272B7292B5E60DC00BF3623 /* AccountViewController.swift in Sources */,
+				3272B7252B5E5E6500BF3623 /* ThemeColor.swift in Sources */,
 				3272B7042B5E3D8700BF3623 /* SceneDelegate.swift in Sources */,
+				3272B71D2B5E4A9400BF3623 /* UIButton + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +423,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3272B71E2B5E4B5700BF3623 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3272B71F2B5E4B5800BF3623 /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3272B71E2B5E4B5700BF3623 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3272B6F62B5E3D8700BF3623 /* Project object */;
 }
