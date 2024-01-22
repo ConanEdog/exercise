@@ -57,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				32D177852B57C84400C867FE /* PasswordCombine */,
-				32D177A52B57CA6000C867FE /* Utils */,
 				32D177842B57C84400C867FE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +82,7 @@
 				32D177AE2B57D13700C867FE /* Model */,
 				32D177AD2B57CCF800C867FE /* ViewModel */,
 				32D1779E2B57CA0000C867FE /* PasswordStatusView */,
+				32D177A52B57CA6000C867FE /* Utils */,
 			);
 			path = PasswordCombine;
 			sourceTree = "<group>";
