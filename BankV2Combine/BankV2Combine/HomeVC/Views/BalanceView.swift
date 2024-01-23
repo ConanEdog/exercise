@@ -9,7 +9,7 @@ import UIKit
 
 class BalanceView: UIView {
     private let headerLabel: UILabel = {
-        LabelFactory.build(text: "My Account Balance", font: ThemeFont.demibold(ofSize: 18), textColor: ThemeColor.header)
+        LabelFactory.build(text: "My Account Balance", font: ThemeFont.demibold(ofSize: 18), textColor: ThemeColor.header, textAlignment: .left)
     }()
     
     private lazy var eyeButton: UIButton = {

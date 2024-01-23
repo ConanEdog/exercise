@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let banlanceView = BalanceView()
     private let btnCollectionView = BtnCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private let favoriteCollectionView = FavoriteCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class HomeViewController: UIViewController {
         layout()
         setupScrollView()
         setupBtnCollectionView()
+        setupFavoriteCollectionView()
     }
     
     private func setupNavBar() {
@@ -30,28 +32,34 @@ class HomeViewController: UIViewController {
     
     private func setupScrollView() {
         
-        scrollView.backgroundColor = .red
+        scrollView.backgroundColor = ThemeColor.background
         print("ScrollView height: \(scrollView.bounds.width)")
         print("View height: \(view.bounds.width)")
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 100)
     }
     
     private func setupBtnCollectionView() {
-        btnCollectionView.register(BtnCollectionViewCell.self, forCellWithReuseIdentifier: BtnCollectionViewCell.reusedId)
+        
         btnCollectionView.delegate = self
         btnCollectionView.dataSource = self
-        btnCollectionView.allowsSelection = true
-        btnCollectionView.collectionViewLayout = btnCollectionView.generateLayout()
+
+    }
+    
+    private func setupFavoriteCollectionView() {
+        
+        favoriteCollectionView.delegate = self
+        favoriteCollectionView.dataSource = self
         
     }
     
     private func layout() {
         view.addSubview(scrollView)
-        [banlanceView, btnCollectionView].forEach(scrollView.addSubview(_:))
+        [banlanceView, btnCollectionView, favoriteCollectionView].forEach(scrollView.addSubview(_:))
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         banlanceView.translatesAutoresizingMaskIntoConstraints = false
         btnCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        favoriteCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -68,8 +76,12 @@ class HomeViewController: UIViewController {
             btnCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: banlanceView.bottomAnchor, multiplier: 1),
             btnCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             btnCollectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            btnCollectionView.heightAnchor.constraint(equalToConstant: 200)
+            btnCollectionView.heightAnchor.constraint(equalToConstant: 200),
             
+            favoriteCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: btnCollectionView.bottomAnchor, multiplier: 2),
+            favoriteCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            favoriteCollectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            favoriteCollectionView.heightAnchor.constraint(equalToConstant: 130)
         ])
     }
 
@@ -90,5 +102,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reusedId, for: indexPath) as! HeaderView
+        return headerView
+    }
 }

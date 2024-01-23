@@ -13,7 +13,7 @@ class TabView: UIView {
     
     private lazy var homeBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.verticalSet(title: "Home", imageName: "house")
+        button.verticalSet(title: "Home", imageName: "house", pointSize: 20)
         button.tapPublisher.flatMap {
             Just(Tab.home)
         }.assign(to: \.value, on: tabSubject).store(in: &cancellables)
@@ -22,7 +22,7 @@ class TabView: UIView {
     
     private lazy var accountBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.verticalSet(title: "Account", imageName: "list.dash.header.rectangle")
+        button.verticalSet(title: "Account", imageName: "list.dash.header.rectangle", pointSize: 20)
         button.tapPublisher.flatMap {
             Just(Tab.account)
         }.assign(to: \.value, on: tabSubject).store(in: &cancellables)
@@ -31,7 +31,7 @@ class TabView: UIView {
     
     private lazy var locationBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.verticalSet(title: "Location", imageName: "mappin.and.ellipse")
+        button.verticalSet(title: "Location", imageName: "mappin.and.ellipse", pointSize: 20)
         button.tapPublisher.flatMap {
             Just(Tab.location)
         }.assign(to: \.value, on: tabSubject).store(in: &cancellables)
@@ -40,7 +40,7 @@ class TabView: UIView {
     
     private lazy var serviceBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.verticalSet(title: "Service", imageName: "person.2.fill")
+        button.verticalSet(title: "Service", imageName: "person.2.fill", pointSize: 20)
         button.tapPublisher.flatMap {
             Just(Tab.service)
         }.assign(to: \.value, on: tabSubject).store(in: &cancellables)

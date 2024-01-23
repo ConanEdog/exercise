@@ -11,9 +11,16 @@ class BtnCollectionView: UICollectionView {
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        commonInit()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+        register(BtnCollectionViewCell.self, forCellWithReuseIdentifier: BtnCollectionViewCell.reusedId)
+        allowsSelection = true
+        collectionViewLayout = generateLayout()
     }
     
     func generateLayout() -> UICollectionViewLayout {
