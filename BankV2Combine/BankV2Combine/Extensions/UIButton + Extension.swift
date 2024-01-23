@@ -13,7 +13,7 @@ extension UIButton {
         let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
         var btnConfig = UIButton.Configuration.plain()
         btnConfig.imagePlacement = .top
-        btnConfig.titleLineBreakMode = .byTruncatingTail
+//        btnConfig.titleLineBreakMode = .byTruncatingTail
         var container = AttributeContainer()
         container.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         btnConfig.attributedTitle = AttributedString(title, attributes: container)

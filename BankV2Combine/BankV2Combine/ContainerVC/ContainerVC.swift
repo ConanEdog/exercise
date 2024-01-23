@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import Combine
 
-class TabVC: UIViewController {
+class ContainerVC: UIViewController {
 
     let tabView = TabView()
     
@@ -85,7 +85,7 @@ struct ViewControllerRepresentable:
     typealias UIViewControllerType = UIViewController
     
     func makeUIViewController(context: Context) -> UIViewControllerType {
-        TabVC()
+        ContainerVC()
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

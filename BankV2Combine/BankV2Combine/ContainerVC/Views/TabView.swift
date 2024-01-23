@@ -56,7 +56,7 @@ class TabView: UIView {
        ])
         view.axis = .horizontal
         view.distribution = .fillEqually
-        view.spacing = 5
+        view.spacing = 4
         return view
     }()
     
