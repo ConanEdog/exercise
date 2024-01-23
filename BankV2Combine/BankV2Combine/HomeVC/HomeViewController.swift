@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     private let banlanceView = BalanceView()
     private let btnCollectionView = BtnCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let favoriteCollectionView = FavoriteCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    private lazy var bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +55,13 @@ class HomeViewController: UIViewController {
     
     private func layout() {
         view.addSubview(scrollView)
-        [banlanceView, btnCollectionView, favoriteCollectionView].forEach(scrollView.addSubview(_:))
+        [banlanceView, btnCollectionView, favoriteCollectionView, bannerView].forEach(scrollView.addSubview(_:))
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         banlanceView.translatesAutoresizingMaskIntoConstraints = false
         btnCollectionView.translatesAutoresizingMaskIntoConstraints = false
         favoriteCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -78,10 +80,16 @@ class HomeViewController: UIViewController {
             btnCollectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             btnCollectionView.heightAnchor.constraint(equalToConstant: 200),
             
-            favoriteCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: btnCollectionView.bottomAnchor, multiplier: 2),
+            favoriteCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: btnCollectionView.bottomAnchor, multiplier: 1),
             favoriteCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             favoriteCollectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            favoriteCollectionView.heightAnchor.constraint(equalToConstant: 130)
+            favoriteCollectionView.heightAnchor.constraint(equalToConstant: 130),
+            
+            bannerView.topAnchor.constraint(equalToSystemSpacingBelow: favoriteCollectionView.bottomAnchor, multiplier: 1),
+            bannerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            bannerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            bannerView.heightAnchor.constraint(equalToConstant: 150)
+            
         ])
     }
 

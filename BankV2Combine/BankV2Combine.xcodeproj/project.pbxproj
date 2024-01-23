@@ -31,6 +31,9 @@
 		32CFFA0D2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA0C2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift */; };
 		32CFFA0F2B5F7B6D00F7C9A8 /* FavoriteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA0E2B5F7B6D00F7C9A8 /* FavoriteCollectionView.swift */; };
 		32CFFA112B5F7B8900F7C9A8 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA102B5F7B8900F7C9A8 /* HeaderView.swift */; };
+		32CFFA142B5F9E5600F7C9A8 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA132B5F9E5600F7C9A8 /* BannerView.swift */; };
+		32CFFA162B5F9E6E00F7C9A8 /* BannerScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA152B5F9E6E00F7C9A8 /* BannerScrollView.swift */; };
+		32CFFA182B5F9EB900F7C9A8 /* DownloadImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA172B5F9EB900F7C9A8 /* DownloadImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		32CFFA0C2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		32CFFA0E2B5F7B6D00F7C9A8 /* FavoriteCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionView.swift; sourceTree = "<group>"; };
 		32CFFA102B5F7B8900F7C9A8 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		32CFFA132B5F9E5600F7C9A8 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		32CFFA152B5F9E6E00F7C9A8 /* BannerScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerScrollView.swift; sourceTree = "<group>"; };
+		32CFFA172B5F9EB900F7C9A8 /* DownloadImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +98,10 @@
 		3272B7002B5E3D8700BF3623 /* BankV2Combine */ = {
 			isa = PBXGroup;
 			children = (
+				3272B7152B5E441F00BF3623 /* ContainerVC */,
 				3272B72F2B5E74DC00BF3623 /* HomeVC */,
 				3272B7232B5E5E5600BF3623 /* Utils */,
 				3272B71B2B5E4A7800BF3623 /* Extensions */,
-				3272B7152B5E441F00BF3623 /* ContainerVC */,
 				3272B7012B5E3D8700BF3623 /* AppDelegate.swift */,
 				3272B7032B5E3D8700BF3623 /* SceneDelegate.swift */,
 				3272B70A2B5E3D8800BF3623 /* Assets.xcassets */,
@@ -168,6 +174,7 @@
 				32CFFA052B5F61C800F7C9A8 /* BalanceView */,
 				32CFFA062B5F61DA00F7C9A8 /* BtnCollectionView */,
 				32CFFA0B2B5F7B0700F7C9A8 /* FavoriteCollectionView */,
+				32CFFA122B5F9DAE00F7C9A8 /* BannerView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +205,16 @@
 				32CFFA102B5F7B8900F7C9A8 /* HeaderView.swift */,
 			);
 			name = FavoriteCollectionView;
+			sourceTree = "<group>";
+		};
+		32CFFA122B5F9DAE00F7C9A8 /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				32CFFA132B5F9E5600F7C9A8 /* BannerView.swift */,
+				32CFFA152B5F9E6E00F7C9A8 /* BannerScrollView.swift */,
+				32CFFA172B5F9EB900F7C9A8 /* DownloadImageView.swift */,
+			);
+			path = BannerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,12 +301,15 @@
 				3272B7022B5E3D8700BF3623 /* AppDelegate.swift in Sources */,
 				3272B71A2B5E491300BF3623 /* Tab.swift in Sources */,
 				3272B7362B5E774400BF3623 /* ThemeFont.swift in Sources */,
+				32CFFA142B5F9E5600F7C9A8 /* BannerView.swift in Sources */,
 				3272B7182B5E445C00BF3623 /* TabView.swift in Sources */,
 				3272B72B2B5E60E800BF3623 /* LocationViewController.swift in Sources */,
 				3272B7272B5E60B500BF3623 /* HomeViewController.swift in Sources */,
+				32CFFA162B5F9E6E00F7C9A8 /* BannerScrollView.swift in Sources */,
 				32CFFA082B5F626000F7C9A8 /* BtnCollectionView.swift in Sources */,
 				3272B7292B5E60DC00BF3623 /* AccountViewController.swift in Sources */,
 				32CFFA112B5F7B8900F7C9A8 /* HeaderView.swift in Sources */,
+				32CFFA182B5F9EB900F7C9A8 /* DownloadImageView.swift in Sources */,
 				32CFFA0A2B5F629400F7C9A8 /* BtnCollectionViewCell.swift in Sources */,
 				32CFFA0F2B5F7B6D00F7C9A8 /* FavoriteCollectionView.swift in Sources */,
 				3272B7252B5E5E6500BF3623 /* ThemeColor.swift in Sources */,
