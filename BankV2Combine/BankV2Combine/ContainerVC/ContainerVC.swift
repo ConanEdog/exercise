@@ -13,7 +13,7 @@ class ContainerVC: UIViewController {
 
     let tabView = TabView()
     
-    let homeNav = UINavigationController(rootViewController: HomeViewController())
+    let homeNav = UINavigationController(rootViewController: HomeViewController(viewModel: HomeViewModel(webService: Webservice())))
     let accountNaV = UINavigationController(rootViewController: AccountViewController())
     let locationNaV = UINavigationController(rootViewController: LocationViewController())
     let serviceNaV = UINavigationController(rootViewController: ServiceViewController())

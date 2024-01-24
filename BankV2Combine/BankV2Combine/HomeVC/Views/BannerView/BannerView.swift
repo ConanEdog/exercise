@@ -46,7 +46,7 @@ class BannerView: UIView {
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: scrollView.trailingAnchor, multiplier: 2),
-            scrollView.heightAnchor.constraint(equalToConstant: 130),
+            scrollView.heightAnchor.constraint(equalToConstant: 120),
             
             pageControl.topAnchor.constraint(equalToSystemSpacingBelow: scrollView.bottomAnchor, multiplier: 1),
             pageControl.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
@@ -55,6 +55,11 @@ class BannerView: UIView {
             
             
         ])
+    }
+    
+    func configure(urls: [URL]) {
+        scrollView.configure(urls: urls)
+        pageControl.numberOfPages = scrollView.imageURLs.count
     }
     
     @objc private func pageChanged() {

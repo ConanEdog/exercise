@@ -60,4 +60,8 @@ class CurrencyView: UIView {
     func toggleSecurity() {
         textField.isSecureTextEntry.toggle()
     }
+    
+    func setTextFieldText(text: String) {
+        textField.text = text
+    }
 }

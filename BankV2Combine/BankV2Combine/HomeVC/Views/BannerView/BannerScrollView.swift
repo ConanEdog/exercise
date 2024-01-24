@@ -36,13 +36,13 @@ class BannerScrollView: UIScrollView {
 
     }
     
-    func configScrollView() {
+    private func configScrollView() {
         self.contentSize = CGSize(width: self.bounds.width * CGFloat(imageURLs.count + 2), height: self.bounds.height)
         self.contentOffset = CGPoint(x: self.bounds.width, y: 0)
     }
     
     
-    func setupImage() {
+    private func setupImage() {
         
         guard imageURLs.isEmpty == false else {
             return
@@ -66,5 +66,9 @@ class BannerScrollView: UIScrollView {
             }
             self.addSubview(imageView)
         }
+    }
+    
+    func configure(urls: [URL]) {
+        self.imageURLs = urls
     }
 }

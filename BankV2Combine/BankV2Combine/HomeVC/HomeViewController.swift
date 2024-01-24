@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import Combine
 
 class HomeViewController: UIViewController {
 
+    private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     private let scrollView = UIScrollView()
     private let banlanceView = BalanceView()
     private let btnCollectionView = BtnCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let favoriteCollectionView = FavoriteCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private lazy var bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +35,36 @@ class HomeViewController: UIViewController {
         setupScrollView()
         setupBtnCollectionView()
         setupFavoriteCollectionView()
+        bind()
+    }
+    
+    private func bind() {
+        let output = viewModel.output()
+        output.balanceResultPublisher.sink { completion in
+            switch completion {
+                
+            case .finished:
+                print("finish")
+            case .failure(let error):
+                print(error)
+            }
+        } receiveValue: { [unowned self] balanceResult in
+            self.banlanceView.configure(result: balanceResult)
+        }.store(in: &cancellables)
+        
+        output.adPublisher.sink { completion in
+            switch completion {
+                
+            case .finished:
+                print("finish")
+            case .failure(let error):
+                print(error)
+            }
+        } receiveValue: { urls in
+            self.bannerView.configure(urls: urls)
+        }.store(in: &cancellables)
+
+
     }
     
     private func setupNavBar() {
@@ -37,6 +80,27 @@ class HomeViewController: UIViewController {
         print("ScrollView height: \(scrollView.bounds.width)")
         print("View height: \(view.bounds.width)")
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 100)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ : UIRefreshControl) {
+        let output = viewModel.refreshOutput()
+        output.balanceResultPublisher.sink { [unowned self] completion in
+            switch completion {
+            
+            case .finished:
+                self.scrollView.refreshControl?.endRefreshing()
+            case .failure(let error):
+                print(error)
+            }
+        } receiveValue: { result in
+            self.banlanceView.configure(result: result)
+        }.store(in: &cancellables)
+        
+        
     }
     
     private func setupBtnCollectionView() {

@@ -72,7 +72,11 @@ class BalanceView: UIView {
             vStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
             
         ])
-        
+    }
+    
+    func configure(result: BalanceResult) {
+        usdView.setTextFieldText(text: result.totalUSD.toCurrencyString())
+        khrView.setTextFieldText(text: result.totalKHR.toCurrencyString())
     }
 }
 
