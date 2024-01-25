@@ -43,7 +43,6 @@ class FavoriteCollectionView: UICollectionView {
         register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderView.reusedId)
         allowsSelection = true
         collectionViewLayout = generateLayout()
-        
         backgroundView = defaultView
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +64,7 @@ class FavoriteCollectionView: UICollectionView {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(2/3))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/3))
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         section.boundarySupplementaryItems = [header]
         section.orthogonalScrollingBehavior = .continuous

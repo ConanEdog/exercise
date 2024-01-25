@@ -83,7 +83,15 @@ class HomeViewController: UIViewController {
             .sink { [weak self] urls in
                 self?.bannerView.configure(urls: urls)
             }.store(in: &cancellables)
-
+        
+        viewModel.$favoriteLoadingCompleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completed in
+                if completed {
+                    self?.favoriteCollectionView.restoreBackgroundView()
+                    self?.favoriteCollectionView.reloadData()
+                }
+            }.store(in: &cancellables)
 
     }
     
@@ -150,7 +158,7 @@ class HomeViewController: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             banlanceView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             banlanceView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -165,7 +173,7 @@ class HomeViewController: UIViewController {
             favoriteCollectionView.topAnchor.constraint(equalToSystemSpacingBelow: btnCollectionView.bottomAnchor, multiplier: 1),
             favoriteCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             favoriteCollectionView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            favoriteCollectionView.heightAnchor.constraint(equalToConstant: 130),
+            favoriteCollectionView.heightAnchor.constraint(equalToConstant: 120),
             
             bannerView.topAnchor.constraint(equalToSystemSpacingBelow: favoriteCollectionView.bottomAnchor, multiplier: 1),
             bannerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -181,15 +189,23 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView === btnCollectionView ? 6 : 0
+        return collectionView === btnCollectionView ? 6 : viewModel.favoriteItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BtnCollectionViewCell.reusedId, for: indexPath) as! BtnCollectionViewCell
-        cell.configure(index: indexPath.item)
-        return cell
+        if collectionView === btnCollectionView {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BtnCollectionViewCell.reusedId, for: indexPath) as! BtnCollectionViewCell
+            cell.configure(index: indexPath.item)
+            return cell
+        } else {
+            
+            let item = viewModel.favoriteItems[indexPath.item]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.reusedId, for: indexPath) as! FavoriteCollectionViewCell
+            cell.configure(item: item)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

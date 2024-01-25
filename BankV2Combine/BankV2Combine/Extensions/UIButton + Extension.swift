@@ -20,7 +20,7 @@ extension UIButton {
         btnConfig.image = UIImage(systemName: imageName, withConfiguration: config)
         btnConfig.imagePadding = 2
         self.configuration = btnConfig
-        tintColor = .systemGray2
+        tintColor = .systemGray3
     }
     
     func largeVerticalSet(title: String, imageName: String, fontSize:CGFloat, imageSize: CGFloat, fontWeight: UIFont.Weight) {
@@ -34,7 +34,7 @@ extension UIButton {
         btnConfig.image = UIImage(named: imageName, in: nil, with: config)
         btnConfig.imagePadding = 2
         self.configuration = btnConfig
-        self.tintColor = .systemGray2
+        self.tintColor = .systemGray3
         
     }
     
@@ -49,7 +49,7 @@ extension UIButton {
         btnConfig.image = UIImage(systemName: imageName, withConfiguration: config)
         btnConfig.imagePadding = 2
         self.configuration = btnConfig
-        self.tintColor = .systemGray2
+        self.tintColor = .systemGray3
         
     }
 }

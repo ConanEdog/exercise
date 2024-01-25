@@ -14,6 +14,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
@@ -30,7 +31,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure() {
-        
+    func configure(item: Item) {
+        button.largeVerticalSet(title: item.nickname, imageName: item.transType.rawValue, fontSize: 12, imageSize: 48, fontWeight: .regular)
     }
 }

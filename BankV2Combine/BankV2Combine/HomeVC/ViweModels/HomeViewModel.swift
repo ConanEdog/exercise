@@ -12,6 +12,8 @@ class HomeViewModel {
     
     @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: 0, totalKHR: 0)
     @Published private(set) var urls: [URL] = []
+    @Published private(set) var favoriteItems: [Item] = []
+    @Published var favoriteLoadingCompleted = false
     @Published private(set) var error: NetworkError?
     private let webService: Webservice
     
@@ -87,7 +89,25 @@ class HomeViewModel {
 
     }
     
+    private func loadFavorite() {
+        webService.fetchFavorites(resource: Item.getURL())
+            .sink { [unowned self] completion in
+                switch completion {
+                    
+                case .finished:
+                    self.favoriteLoadingCompleted = true
+                case .failure(let error):
+                    self.error = (error as! NetworkError)
+                }
+            } receiveValue: { [unowned self] items in
+                self.favoriteItems = items
+                print(items)
+            }.store(in: &cancellables)
+
+    }
+    
     func refresh() {
         loadBalance(isNew: true)
+        loadFavorite()
     }
 }
