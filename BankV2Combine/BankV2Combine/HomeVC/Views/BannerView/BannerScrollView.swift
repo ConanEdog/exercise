@@ -8,13 +8,19 @@
 import UIKit
 
 class BannerScrollView: UIScrollView {
-    
+
     var imageURLs = [URL]() {
         didSet {
             self.configScrollView()
             self.setupImage()
         }
     }
+    
+    private lazy var defaultView: DownloadImageView = {
+        let view = DownloadImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        addSubview(view)
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,18 +33,28 @@ class BannerScrollView: UIScrollView {
     }
     
     private func prepareView() {
-        let imageView = DownloadImageView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
-        self.addSubview(imageView)
         self.layer.cornerRadius = 15
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         self.isPagingEnabled = true
-
+        layout()
+    }
+    
+    private func layout() {
+        defaultView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            defaultView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            defaultView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            defaultView.widthAnchor.constraint(equalTo: widthAnchor),
+            defaultView.heightAnchor.constraint(equalTo: heightAnchor)
+        ])
     }
     
     private func configScrollView() {
         self.contentSize = CGSize(width: self.bounds.width * CGFloat(imageURLs.count + 2), height: self.bounds.height)
-        self.contentOffset = CGPoint(x: self.bounds.width, y: 0)
+        
+        self.contentOffset = imageURLs.isEmpty ? CGPoint(x: 0, y: 0) : CGPoint(x: self.bounds.width, y: 0)
     }
     
     

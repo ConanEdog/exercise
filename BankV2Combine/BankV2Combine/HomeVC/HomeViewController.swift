@@ -188,6 +188,7 @@ class HomeViewController: UIViewController {
             bannerView.heightAnchor.constraint(equalToConstant: 150)
             
         ])
+        view.layoutIfNeeded()
     }
 
 }

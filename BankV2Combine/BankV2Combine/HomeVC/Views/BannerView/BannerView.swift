@@ -9,7 +9,7 @@ import UIKit
 
 class BannerView: UIView {
 
-    private lazy var scrollView = BannerScrollView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height))
+    private lazy var scrollView = BannerScrollView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
     
     private lazy var pageControl: UIPageControl = {
         let control = UIPageControl()
@@ -52,8 +52,7 @@ class BannerView: UIView {
             pageControl.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             pageControl.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 12)
-            
-            
+        
         ])
     }
     

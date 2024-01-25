@@ -9,8 +9,8 @@ import UIKit
 
 class DownloadImageView: UIImageView {
 
-    private let indicatorView = UIActivityIndicatorView(style: .large)
-    private let button = UIButton()
+    private lazy var indicatorView = UIActivityIndicatorView(style: .large)
+    private lazy var button = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +41,7 @@ class DownloadImageView: UIImageView {
         NSLayoutConstraint.activate([
             indicatorView.centerXAnchor.constraint(equalTo:  self.centerXAnchor),
             indicatorView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            button.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -20),
+            button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             button.widthAnchor.constraint(equalToConstant: 48),
             button.heightAnchor.constraint(equalToConstant: 24)
