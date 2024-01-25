@@ -14,6 +14,8 @@ class HomeViewModel {
     @Published private(set) var urls: [URL] = []
     @Published private(set) var favoriteItems: [Item] = []
     @Published var favoriteLoadingCompleted = false
+    @Published private(set) var messages: [Message] = []
+    @Published var messageLoadingCompleted = false
     @Published private(set) var error: NetworkError?
     private let webService: Webservice
     
@@ -101,7 +103,22 @@ class HomeViewModel {
                 }
             } receiveValue: { [unowned self] items in
                 self.favoriteItems = items
-                print(items)
+            }.store(in: &cancellables)
+
+    }
+    
+    private func loadMessages() {
+        webService.fetchMessages(resource: Message.getURL())
+            .sink { [unowned self] completion in
+                switch completion {
+                    
+                case .finished:
+                    self.messageLoadingCompleted = true
+                case .failure(let error):
+                    self.error = (error as! NetworkError)
+                }
+            } receiveValue: { [unowned self] messages in
+                self.messages = messages
             }.store(in: &cancellables)
 
     }
@@ -109,5 +126,6 @@ class HomeViewModel {
     func refresh() {
         loadBalance(isNew: true)
         loadFavorite()
+        loadMessages()
     }
 }

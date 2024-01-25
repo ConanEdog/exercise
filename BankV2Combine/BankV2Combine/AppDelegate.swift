@@ -18,8 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithTransparentBackground() // hide navigation bar line
         navBarAppearance.backgroundColor = ThemeColor.background
+        navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let image = UIImage(named: "back")
+        navBarAppearance.setBackIndicatorImage(image, transitionMaskImage: image)
+        
+//        let barButtonAppearance  = UIBarButtonItemAppearance()
+//        barButtonAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.clear]
+//        navBarAppearance.backButtonAppearance = barButtonAppearance
+        
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+        
         
         return true
     }

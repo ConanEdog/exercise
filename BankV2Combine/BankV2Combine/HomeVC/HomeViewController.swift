@@ -18,6 +18,12 @@ class HomeViewController: UIViewController {
     private let btnCollectionView = BtnCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let favoriteCollectionView = FavoriteCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private lazy var bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
+    private lazy var bellBtn: UIButton = {
+        let btn = UIButton(frame: CGRectMake(0,0,36,36))
+        btn.setImage(UIImage(named: "bellNormal"), for: .normal)
+        btn.addTarget(self, action: #selector(bellPressed), for: .touchUpInside)
+        return btn
+    }()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -26,6 +32,16 @@ class HomeViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideTabBar()
     }
     
     override func viewDidLoad() {
@@ -39,29 +55,6 @@ class HomeViewController: UIViewController {
     }
     
     private func bind() {
-//        let output = viewModel.output()
-//        output.balanceResultPublisher.sink { completion in
-//            switch completion {
-//                
-//            case .finished:
-//                print("finish")
-//            case .failure(let error):
-//                print(error)
-//            }
-//        } receiveValue: { [unowned self] balanceResult in
-//            self.banlanceView.configure(result: balanceResult)
-//        }.store(in: &cancellables)
-        //        output.adPublisher.sink { completion in
-        //            switch completion {
-        //
-        //            case .finished:
-        //                print("finish")
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        } receiveValue: { urls in
-        //            self.bannerView.configure(urls: urls)
-        //        }.store(in: &cancellables)
         
         viewModel.$balanceResult
             .receive(on: DispatchQueue.main)
@@ -93,12 +86,20 @@ class HomeViewController: UIViewController {
                 }
             }.store(in: &cancellables)
 
+        viewModel.$messageLoadingCompleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completed in
+                if completed {
+                    self?.bellBtn.setImage(UIImage(named: "bellActive"), for: .normal)
+                }
+            }.store(in: &cancellables)
     }
     
     private func setupNavBar() {
         let config = UIImage.SymbolConfiguration(pointSize: 24)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle", withConfiguration: config)!.withTintColor(.systemGray, renderingMode: .alwaysOriginal), style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bell")!.withTintColor(.systemGray, renderingMode: .alwaysOriginal), style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: bellBtn)
+        navigationItem.backButtonTitle = ""
         
     }
     
@@ -114,7 +115,13 @@ class HomeViewController: UIViewController {
         scrollView.refreshControl = refreshControl
     }
     
-    @objc func refresh(_ : UIRefreshControl) {
+    @objc func bellPressed(_ sender: UIButton) {
+        let messageTableVC = MessageTableViewController(viewModel: MessageListViewModel(messages: viewModel.messages))
+        navigationController?.pushViewController(messageTableVC, animated: true)
+        
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
         
         viewModel.refresh()
         

@@ -75,6 +75,14 @@ class ContainerVC: UIViewController {
         }.store(in: &cancellables)
         
     }
+    
+    func hideTabView() {
+        tabView.isHidden = true
+    }
+    
+    func showTabView() {
+        tabView.isHidden = false
+    }
 
 }
 

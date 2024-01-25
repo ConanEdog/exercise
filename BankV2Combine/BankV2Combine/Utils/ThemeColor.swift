@@ -14,4 +14,5 @@ struct ThemeColor {
     static let background = UIColor(hexString: "#F9F9F9")
     static let ad = UIColor(hexString: "#BEBEBE")
     static let secondaryBackground = UIColor(hexString: "#DCDCDC")
+    static let orange = UIColor(hexString: "#F48861")
 }
