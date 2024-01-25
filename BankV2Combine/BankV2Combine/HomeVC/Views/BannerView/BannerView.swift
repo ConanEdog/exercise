@@ -38,7 +38,7 @@ class BannerView: UIView,ObservableObject {
     
     private func commonInit() {
         [scrollView, pageControl].forEach(addSubview(_:))
-        
+        scrollView.isScrollEnabled = false
         scrollView.delegate = self
         layout()
     }
@@ -99,7 +99,9 @@ class BannerView: UIView,ObservableObject {
     }
     
     func startTimer() {
-          timerCancellable = Timer.publish(every: 3.0, on: .main, in: .default)
+        scrollView.isScrollEnabled = true
+        
+        timerCancellable = Timer.publish(every: 3.0, on: .main, in: .default)
             .autoconnect()
             .sink { [unowned self] time in
                 print(time)
