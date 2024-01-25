@@ -10,50 +10,39 @@ import Combine
 
 class HomeViewModel {
     
-    struct InitOutput {
-        let balanceResultPublisher: AnyPublisher<BalanceResult, Error>
-        let adPublisher: AnyPublisher<[URL], Error>
-    }
-    
-    struct RefreshOutput {
-        let balanceResultPublisher: AnyPublisher<BalanceResult, Error>
-    }
-    
+    @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: 0, totalKHR: 0)
+    @Published private(set) var urls: [URL] = []
+    @Published private(set) var error: NetworkError?
     private let webService: Webservice
     
     private var cancellables = Set<AnyCancellable>()
     
     init(webService: Webservice) {
         self.webService = webService
-        
+        loadBalance()
+        loadAds()
     }
     
-    func output() -> InitOutput {
-        let balanceResult = loadBalance()
-        let adResult = loadAds()
-        return InitOutput(balanceResultPublisher: balanceResult, adPublisher: adResult)
-    }
-    
-    func refreshOutput() -> RefreshOutput {
-        let balanceResult = loadBalance(isNew: true)
-        return RefreshOutput(balanceResultPublisher: balanceResult)
-    }
-    
-    private func loadBalance(isNew: Bool = false) -> AnyPublisher<BalanceResult, Error> {
+    private func loadBalance(isNew: Bool = false) {
         
         let usdAccountPublisher = getAccounts(type: .USD, isNew: isNew)
         let khrAccountPublisher = getAccounts(type: .KHR, isNew: isNew)
         
-        let balancePublisher = Publishers.CombineLatest(usdAccountPublisher, khrAccountPublisher)
-            .flatMap {[unowned self] (usdAccounts, khrAccounts) in
+        Publishers.CombineLatest(usdAccountPublisher, khrAccountPublisher)
+            .sink { completion in
+                switch completion {
+                    
+                case .finished:
+                    print("finish")
+                case .failure(let error):
+                    self.error = (error as! NetworkError)
+                }
+            } receiveValue: { [unowned self] (usdAccounts, khrAccounts) in
                 let totalUSD = self.calculateToctalBalance(accounts: usdAccounts.filter{$0.curr == .USD}) + self.calculateToctalBalance(accounts: khrAccounts.filter{$0.curr == .USD})
                 let totalKHR = self.calculateToctalBalance(accounts: usdAccounts.filter{$0.curr == .KHR}) + self.calculateToctalBalance(accounts: khrAccounts.filter{$0.curr == .KHR})
-                return Just(BalanceResult(totalUSD: totalUSD, totalKHR: totalKHR))
-            }.eraseToAnyPublisher()
-        
-        
-        return balancePublisher
-        
+                self.balanceResult = BalanceResult(totalUSD: totalUSD, totalKHR: totalKHR)
+            }.store(in: &cancellables)
+
     }
     
     private func getAccounts(type: CurrencyType, isNew: Bool) -> AnyPublisher<[Account], Error> {
@@ -79,12 +68,26 @@ class HomeViewModel {
         return total
     }
     
-    private func loadAds() -> AnyPublisher<[URL], Error> {
-        return webService.fetchBanners(resource: Banner.getURL())
-            .flatMap { banners in
-                Just(banners.map { URL(string: $0.linkUrl)!})
-            }.eraseToAnyPublisher()
-        
+    private func loadAds() {
+        webService.fetchBanners(resource: Banner.getURL())
+            .map { banners in
+                banners.map {URL(string: $0.linkUrl)!}
+            }
+            .sink { completion in
+                switch completion {
+                    
+                case .finished:
+                    print("finish")
+                case .failure(let error):
+                    self.error = (error as! NetworkError)
+                }
+            } receiveValue: { [unowned self] urls in
+                self.urls = urls
+            }.store(in: &cancellables)
+
     }
     
+    func refresh() {
+        loadBalance(isNew: true)
+    }
 }

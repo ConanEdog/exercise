@@ -39,30 +39,50 @@ class HomeViewController: UIViewController {
     }
     
     private func bind() {
-        let output = viewModel.output()
-        output.balanceResultPublisher.sink { completion in
-            switch completion {
-                
-            case .finished:
-                print("finish")
-            case .failure(let error):
-                print(error)
-            }
-        } receiveValue: { [unowned self] balanceResult in
-            self.banlanceView.configure(result: balanceResult)
-        }.store(in: &cancellables)
+//        let output = viewModel.output()
+//        output.balanceResultPublisher.sink { completion in
+//            switch completion {
+//                
+//            case .finished:
+//                print("finish")
+//            case .failure(let error):
+//                print(error)
+//            }
+//        } receiveValue: { [unowned self] balanceResult in
+//            self.banlanceView.configure(result: balanceResult)
+//        }.store(in: &cancellables)
+        //        output.adPublisher.sink { completion in
+        //            switch completion {
+        //
+        //            case .finished:
+        //                print("finish")
+        //            case .failure(let error):
+        //                print(error)
+        //            }
+        //        } receiveValue: { urls in
+        //            self.bannerView.configure(urls: urls)
+        //        }.store(in: &cancellables)
         
-        output.adPublisher.sink { completion in
-            switch completion {
-                
-            case .finished:
-                print("finish")
-            case .failure(let error):
-                print(error)
-            }
-        } receiveValue: { urls in
-            self.bannerView.configure(urls: urls)
-        }.store(in: &cancellables)
+        viewModel.$balanceResult
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] result in
+                self.banlanceView.configure(result: result)
+                self.scrollView.refreshControl?.endRefreshing()
+            }.store(in: &cancellables)
+        
+        viewModel.$error
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                if let error = error {
+                    self?.showAlert(title: error.description, message: "Please try again.")
+                }
+            }.store(in: &cancellables)
+        
+        viewModel.$urls
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] urls in
+                self?.bannerView.configure(urls: urls)
+            }.store(in: &cancellables)
 
 
     }
@@ -87,19 +107,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func refresh(_ : UIRefreshControl) {
-        let output = viewModel.refreshOutput()
-        output.balanceResultPublisher.sink { [unowned self] completion in
-            switch completion {
-            
-            case .finished:
-                self.scrollView.refreshControl?.endRefreshing()
-            case .failure(let error):
-                print(error)
-            }
-        } receiveValue: { result in
-            self.banlanceView.configure(result: result)
-        }.store(in: &cancellables)
         
+        viewModel.refresh()
         
     }
     
@@ -115,6 +124,15 @@ class HomeViewController: UIViewController {
         favoriteCollectionView.delegate = self
         favoriteCollectionView.dataSource = self
         
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        alert.title = title
+        alert.message = message
+        present(alert, animated: true)
     }
     
     private func layout() {

@@ -12,6 +12,18 @@ enum NetworkError: Error {
     case decodingError
     case domainError
     case urlError
+    
+    var description: String {
+        switch self {
+            
+        case .decodingError:
+            "Decoding Error"
+        case .domainError:
+            "Server Error"
+        case .urlError:
+            "URL Error"
+        }
+    }
 }
 
 enum HttpMethod: String {
