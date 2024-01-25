@@ -11,6 +11,7 @@ import Combine
 class HomeViewModel {
     
     @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: 0, totalKHR: 0)
+    @Published var adLoadingCompleted = false
     @Published private(set) var urls: [URL] = []
     @Published private(set) var favoriteItems: [Item] = []
     @Published var favoriteLoadingCompleted = false
@@ -77,11 +78,11 @@ class HomeViewModel {
             .map { banners in
                 banners.map {URL(string: $0.linkUrl)!}
             }
-            .sink { completion in
+            .sink { [unowned self] completion in
                 switch completion {
                     
                 case .finished:
-                    print("finish")
+                    self.adLoadingCompleted = true
                 case .failure(let error):
                     self.error = (error as! NetworkError)
                 }

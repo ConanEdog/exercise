@@ -93,6 +93,14 @@ class HomeViewController: UIViewController {
                     self?.bellBtn.setImage(UIImage(named: "bellActive"), for: .normal)
                 }
             }.store(in: &cancellables)
+        
+        viewModel.$adLoadingCompleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completed in
+                if completed {
+                    self?.bannerView.startTimer()
+                }
+            }.store(in: &cancellables)
     }
     
     private func setupNavBar() {
