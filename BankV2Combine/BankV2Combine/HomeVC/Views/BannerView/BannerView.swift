@@ -89,10 +89,12 @@ class BannerView: UIView {
             }.store(in: &cancellables)
         
         pageControl.pageChangedPublisher.sink { [unowned self] page in
+            stopTimer()
             let contentOffSetMinX = self.scrollView.bounds.width * CGFloat(page + 1)
             let point = CGPoint(x: contentOffSetMinX, y: 0)
             self.scrollView.setContentOffset(point, animated: true)
             pageIndex = Int(contentOffSetMinX / self.scrollView.bounds.width)
+            startTimer()
         }.store(in: &cancellables)
     }
     
