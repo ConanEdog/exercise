@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Combine
 
 class BannerScrollView: UIScrollView {
 
     var imageURLs = [URL]() {
         didSet {
-            self.configScrollView()
-            self.setupImage()
+            configScrollView()
+            setupImage()
         }
     }
     
@@ -22,9 +23,12 @@ class BannerScrollView: UIScrollView {
         return view
     }()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareView()
+        observe()
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +55,25 @@ class BannerScrollView: UIScrollView {
         ])
     }
     
+    private func observe() {
+        // debounce for device's orientaton done.
+        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .sink { [unowned self] _ in
+            
+            print("orientation: \(UIDevice.current.orientation)")
+            if UIDevice.current.orientation.isLandscape || UIDevice.current.orientation.isPortrait {
+                // change scroll view content size
+                contentSize = CGSize(width: self.bounds.width * CGFloat(imageURLs.count + 2), height: self.bounds.height)
+                // change imageView's frame
+                for i in 1...(imageURLs.count + 2) {
+                    viewWithTag(i)?.frame = CGRect(x: frame.width * CGFloat(i - 1), y: 0, width: bounds.width, height: bounds.height)
+                }
+            }
+            
+        }.store(in: &cancellables)
+    }
+    
     private func configScrollView() {
         self.contentSize = CGSize(width: self.bounds.width * CGFloat(imageURLs.count + 2), height: self.bounds.height)
         
@@ -60,12 +83,13 @@ class BannerScrollView: UIScrollView {
     
     private func setupImage() {
         
-        guard imageURLs.isEmpty == false else {
+        guard !imageURLs.isEmpty else {
             return
         }
         for i in 0...(imageURLs.count + 1) {
             
             let imageView = DownloadImageView(frame: CGRect(x: self.frame.width * CGFloat(i), y: 0, width: self.bounds.width, height: self.bounds.height))
+            imageView.tag = i + 1
             var url: URL
             
             switch i {
@@ -86,5 +110,9 @@ class BannerScrollView: UIScrollView {
     
     func configure(urls: [URL]) {
         self.imageURLs = urls
+    }
+    
+    func removeDefaultView() {
+        defaultView.removeFromSuperview()
     }
 }

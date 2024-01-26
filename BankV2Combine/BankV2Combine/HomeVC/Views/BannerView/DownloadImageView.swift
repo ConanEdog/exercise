@@ -23,7 +23,7 @@ class DownloadImageView: UIImageView {
     }
     
     private func prepareView() {
-        self.backgroundColor = ThemeColor.secondaryBackground
+        backgroundColor = ThemeColor.secondaryBackground
         indicatorView.frame = CGRect(x: 0, y: 0, width: self.frame.width/2, height: self.frame.height/2)
         button.backgroundColor = ThemeColor.ad
         button.layer.cornerRadius = 8
@@ -48,12 +48,6 @@ class DownloadImageView: UIImageView {
         ])
     }
     
-    private func prepareIconView() {
-        
-        
-
-        
-    }
 
     func loadAsync(url: URL) async throws {
         indicatorView.startAnimating()

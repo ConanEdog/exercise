@@ -100,7 +100,7 @@ class BannerView: UIView {
     
     func startTimer() {
         scrollView.isScrollEnabled = true
-        
+        scrollView.removeDefaultView()
         timerCancellable = Timer.publish(every: 3.0, on: .main, in: .default)
             .autoconnect()
             .sink { [unowned self] time in
