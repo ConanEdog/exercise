@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import CombineCocoa
 
-class BannerView: UIView,ObservableObject {
+class BannerView: UIView {
 
     private lazy var scrollView = BannerScrollView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
     
@@ -19,7 +19,6 @@ class BannerView: UIView,ObservableObject {
         control.pageIndicatorTintColor = .lightGray
         control.currentPageIndicatorTintColor = .black
         control.numberOfPages = scrollView.imageURLs.count
-        control.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
         return control
     }()
     
@@ -67,13 +66,6 @@ class BannerView: UIView,ObservableObject {
         pageControl.numberOfPages = scrollView.imageURLs.count
     }
     
-    @objc private func pageChanged() {
-        let contentOffSetMinX = self.scrollView.bounds.width * CGFloat(pageControl.currentPage + 1)
-        let point = CGPoint(x: contentOffSetMinX, y: 0)
-        self.scrollView.setContentOffset(point, animated: true)
-        pageIndex = Int(contentOffSetMinX / scrollView.bounds.width)
-    }
-    
     private func bind() {
         
         scrollView.contentOffsetPublisher
@@ -96,6 +88,12 @@ class BannerView: UIView,ObservableObject {
                 pageIndex = Int(page) + 1
             }.store(in: &cancellables)
         
+        pageControl.pageChangedPublisher.sink { [unowned self] page in
+            let contentOffSetMinX = self.scrollView.bounds.width * CGFloat(page + 1)
+            let point = CGPoint(x: contentOffSetMinX, y: 0)
+            self.scrollView.setContentOffset(point, animated: true)
+            pageIndex = Int(contentOffSetMinX / self.scrollView.bounds.width)
+        }.store(in: &cancellables)
     }
     
     func startTimer() {
@@ -106,7 +104,7 @@ class BannerView: UIView,ObservableObject {
             .sink { [unowned self] time in
                 print(time)
                 if pageIndex == self.scrollView.imageURLs.count + 1 {
-                    pageIndex = 1
+                    pageIndex = 2
                 } else {
                     pageIndex += 1
                 }
