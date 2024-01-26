@@ -8,6 +8,6 @@
 import Foundation
 
 struct BalanceResult {
-    let totalUSD: Double
-    let totalKHR: Double
+    let totalUSD: String
+    let totalKHR: String
 }

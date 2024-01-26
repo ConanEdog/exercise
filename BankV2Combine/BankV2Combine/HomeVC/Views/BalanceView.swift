@@ -21,8 +21,8 @@ class BalanceView: UIView {
         return button
     }()
         
-    private let usdView = CurrencyView(currency: "USD")
-    private let khrView = CurrencyView(currency: "KHR")
+    private lazy var usdView = CurrencyView(frame: frame, currency: "USD")
+    private lazy var khrView = CurrencyView(frame: frame, currency: "KHR")
     
     private lazy var vStackView: UIStackView = {
         let view = UIStackView(arrangedSubviews: [
@@ -75,8 +75,17 @@ class BalanceView: UIView {
     }
     
     func configure(result: BalanceResult) {
-        usdView.setTextFieldText(text: result.totalUSD.toCurrencyString())
-        khrView.setTextFieldText(text: result.totalKHR.toCurrencyString())
+        usdView.setTextFieldText(text: result.totalUSD)
+        khrView.setTextFieldText(text: result.totalKHR)
+    }
+    
+    func loadingAnimation() {
+        usdView.setupAnimation()
+        khrView.setupAnimation()
+    }
+    func stopLoadingAnimaiton() {
+        usdView.stopAnimation()
+        khrView.stopAnimation()
     }
 }
 

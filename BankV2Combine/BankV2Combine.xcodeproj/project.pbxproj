@@ -27,6 +27,7 @@
 		3272B7362B5E774400BF3623 /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7352B5E774400BF3623 /* ThemeFont.swift */; };
 		3272B7382B5E80C800BF3623 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272B7372B5E80C800BF3623 /* CurrencyView.swift */; };
 		32A8F6142B637A070009CE9C /* UIPageControl + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A8F6132B637A070009CE9C /* UIPageControl + Extension.swift */; };
+		32A8F6162B6380AA0009CE9C /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A8F6152B6380AA0009CE9C /* SkeletonLoadable.swift */; };
 		32CFFA082B5F626000F7C9A8 /* BtnCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA072B5F626000F7C9A8 /* BtnCollectionView.swift */; };
 		32CFFA0A2B5F629400F7C9A8 /* BtnCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA092B5F629400F7C9A8 /* BtnCollectionViewCell.swift */; };
 		32CFFA0D2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CFFA0C2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift */; };
@@ -71,6 +72,7 @@
 		3272B7352B5E774400BF3623 /* ThemeFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFont.swift; sourceTree = "<group>"; };
 		3272B7372B5E80C800BF3623 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		32A8F6132B637A070009CE9C /* UIPageControl + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageControl + Extension.swift"; sourceTree = "<group>"; };
+		32A8F6152B6380AA0009CE9C /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
 		32CFFA072B5F626000F7C9A8 /* BtnCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnCollectionView.swift; sourceTree = "<group>"; };
 		32CFFA092B5F629400F7C9A8 /* BtnCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnCollectionViewCell.swift; sourceTree = "<group>"; };
 		32CFFA0C2B5F7B5600F7C9A8 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				3272B7242B5E5E6500BF3623 /* ThemeColor.swift */,
 				3272B7332B5E756800BF3623 /* LabelFactory.swift */,
 				3272B7352B5E774400BF3623 /* ThemeFont.swift */,
+				32A8F6152B6380AA0009CE9C /* SkeletonLoadable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				32CFFA332B623B5900F7C9A8 /* UIViewConrtoller + Extension.swift in Sources */,
 				3272B7382B5E80C800BF3623 /* CurrencyView.swift in Sources */,
 				3272B7342B5E756800BF3623 /* LabelFactory.swift in Sources */,
+				32A8F6162B6380AA0009CE9C /* SkeletonLoadable.swift in Sources */,
 				3272B7022B5E3D8700BF3623 /* AppDelegate.swift in Sources */,
 				3272B71A2B5E491300BF3623 /* Tab.swift in Sources */,
 				3272B7362B5E774400BF3623 /* ThemeFont.swift in Sources */,

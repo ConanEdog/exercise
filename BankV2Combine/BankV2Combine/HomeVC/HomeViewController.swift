@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private let scrollView = UIScrollView()
-    private let banlanceView = BalanceView()
+    private lazy var banlanceView = BalanceView(frame: view.frame)
     private let btnCollectionView = BtnCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let favoriteCollectionView = FavoriteCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private lazy var bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
@@ -75,6 +75,16 @@ class HomeViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] urls in
                 self?.bannerView.configure(urls: urls)
+            }.store(in: &cancellables)
+        
+        viewModel.$balanceLoadingCompleted
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completed in
+                if completed {
+                    self?.banlanceView.stopLoadingAnimaiton()
+                } else {
+                    self?.banlanceView.loadingAnimation()
+                }
             }.store(in: &cancellables)
         
         viewModel.$favoriteLoadingCompleted

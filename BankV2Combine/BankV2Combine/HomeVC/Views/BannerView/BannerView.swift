@@ -61,12 +61,12 @@ class BannerView: UIView {
     }
     
     func configure(urls: [URL]) {
-        bind()
+        observe()
         scrollView.configure(urls: urls)
         pageControl.numberOfPages = scrollView.imageURLs.count
     }
     
-    private func bind() {
+    private func observe() {
         
         scrollView.contentOffsetPublisher
             .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)

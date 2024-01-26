@@ -10,9 +10,10 @@ import Combine
 
 class HomeViewModel {
     
-    @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: 0, totalKHR: 0)
-    @Published var adLoadingCompleted = false
+    @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: "", totalKHR: "")
+    @Published var balanceLoadingCompleted = false
     @Published private(set) var urls: [URL] = []
+    @Published var adLoadingCompleted = false
     @Published private(set) var favoriteItems: [Item] = []
     @Published var favoriteLoadingCompleted = false
     @Published private(set) var messages: [Message] = []
@@ -34,18 +35,18 @@ class HomeViewModel {
         let khrAccountPublisher = getAccounts(type: .KHR, isNew: isNew)
         
         Publishers.CombineLatest(usdAccountPublisher, khrAccountPublisher)
-            .sink { completion in
+            .sink { [unowned self] completion in
                 switch completion {
                     
                 case .finished:
-                    print("finish")
+                    self.balanceLoadingCompleted = true
                 case .failure(let error):
                     self.error = (error as! NetworkError)
                 }
             } receiveValue: { [unowned self] (usdAccounts, khrAccounts) in
                 let totalUSD = self.calculateToctalBalance(accounts: usdAccounts.filter{$0.curr == .USD}) + self.calculateToctalBalance(accounts: khrAccounts.filter{$0.curr == .USD})
                 let totalKHR = self.calculateToctalBalance(accounts: usdAccounts.filter{$0.curr == .KHR}) + self.calculateToctalBalance(accounts: khrAccounts.filter{$0.curr == .KHR})
-                self.balanceResult = BalanceResult(totalUSD: totalUSD, totalKHR: totalKHR)
+                self.balanceResult = BalanceResult(totalUSD: totalUSD.toCurrencyString(), totalKHR: totalKHR.toCurrencyString())
             }.store(in: &cancellables)
 
     }
@@ -125,6 +126,8 @@ class HomeViewModel {
     }
     
     func refresh() {
+        balanceLoadingCompleted = false
+        balanceResult = BalanceResult(totalUSD: "", totalKHR: "")
         loadBalance(isNew: true)
         loadFavorite()
         loadMessages()
