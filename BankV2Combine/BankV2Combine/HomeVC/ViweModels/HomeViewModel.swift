@@ -125,11 +125,19 @@ class HomeViewModel {
 
     }
     
-    func refresh() {
+    func refresh() -> AnyPublisher<Bool, Never> {
         balanceLoadingCompleted = false
         balanceResult = BalanceResult(totalUSD: "", totalKHR: "")
         loadBalance(isNew: true)
         loadFavorite()
         loadMessages()
+        return Publishers.CombineLatest3($balanceLoadingCompleted, $favoriteLoadingCompleted, $messageLoadingCompleted)
+            .flatMap { (balanceCompleted, favoriteCompleted, messageCompleted) in
+                if balanceCompleted && favoriteCompleted && messageCompleted {
+                    return Just(true)
+                }
+                return Just(false)
+            }.eraseToAnyPublisher()
+            
     }
 }

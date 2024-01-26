@@ -60,7 +60,6 @@ class HomeViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] result in
                 self.banlanceView.configure(result: result)
-                self.scrollView.refreshControl?.endRefreshing()
             }.store(in: &cancellables)
         
         viewModel.$error
@@ -140,6 +139,12 @@ class HomeViewController: UIViewController {
     @objc func refresh(_ sender: UIRefreshControl) {
         
         viewModel.refresh()
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] refreshCompleted in
+                if refreshCompleted {
+                    self.scrollView.refreshControl?.endRefreshing()
+                }
+        }.store(in: &cancellables)
         
     }
     
