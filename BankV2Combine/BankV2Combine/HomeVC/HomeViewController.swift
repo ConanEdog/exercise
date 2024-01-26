@@ -124,10 +124,8 @@ class HomeViewController: UIViewController {
     private func setupScrollView() {
         
         scrollView.backgroundColor = ThemeColor.background
-        print("ScrollView height: \(scrollView.bounds.width)")
-        print("View height: \(view.bounds.width)")
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 100)
-        
+        let contentSizeHeight = (view.bounds.height - bannerView.frame.maxY) > 100 ? bannerView.frame.maxY : bannerView.frame.maxY + 100
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: contentSizeHeight)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         scrollView.refreshControl = refreshControl

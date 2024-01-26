@@ -147,9 +147,9 @@
 		3272B7152B5E441F00BF3623 /* ContainerVC */ = {
 			isa = PBXGroup;
 			children = (
+				3272B7052B5E3D8700BF3623 /* ContainerVC.swift */,
 				3272B72E2B5E74A800BF3623 /* Model */,
 				3272B7162B5E443D00BF3623 /* Views */,
-				3272B7052B5E3D8700BF3623 /* ContainerVC.swift */,
 			);
 			path = ContainerVC;
 			sourceTree = "<group>";
@@ -196,10 +196,10 @@
 		3272B72F2B5E74DC00BF3623 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
+				3272B7262B5E60B500BF3623 /* HomeViewController.swift */,
 				32CFFA1A2B5FB09900F7C9A8 /* ViweModels */,
 				32CFFA192B5FB09300F7C9A8 /* Models */,
 				3272B7302B5E74F200BF3623 /* Views */,
-				3272B7262B5E60B500BF3623 /* HomeViewController.swift */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -218,6 +218,7 @@
 		32CFFA052B5F61C800F7C9A8 /* BalanceView */ = {
 			isa = PBXGroup;
 			children = (
+				32CFFA282B610AA700F7C9A8 /* Result.swift */,
 				3272B7312B5E751300BF3623 /* BalanceView.swift */,
 				3272B7372B5E80C800BF3623 /* CurrencyView.swift */,
 			);
@@ -260,7 +261,6 @@
 				32CFFA202B5FB27B00F7C9A8 /* Message.swift */,
 				32CFFA222B5FB2A300F7C9A8 /* Favorite.swift */,
 				32CFFA242B5FB2C300F7C9A8 /* Banner.swift */,
-				32CFFA282B610AA700F7C9A8 /* Result.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

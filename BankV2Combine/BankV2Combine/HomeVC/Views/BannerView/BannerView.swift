@@ -104,13 +104,13 @@ class BannerView: UIView {
         timerCancellable = Timer.publish(every: 3.0, on: .main, in: .default)
             .autoconnect()
             .sink { [unowned self] time in
-                print(time)
+                
                 if pageIndex == self.scrollView.imageURLs.count + 1 {
                     pageIndex = 2
                 } else {
                     pageIndex += 1
                 }
-                print("PageIndex: \(pageIndex)")
+                
                 
                 scrollView.setContentOffset(CGPoint(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: true)
             }

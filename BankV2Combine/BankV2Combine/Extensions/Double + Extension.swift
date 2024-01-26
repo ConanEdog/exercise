@@ -9,7 +9,7 @@ import Foundation
 
 extension Double {
     func toCurrencyString() -> String {
-        print(self)
+        
         let numberFormatter = NumberFormatter()
         numberFormatter.groupingSeparator = ","
         numberFormatter.groupingSize = 3
