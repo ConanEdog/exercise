@@ -67,3 +67,7 @@ struct ViewControllerRepresentable: UIViewControllerRepresentable {
 #Preview {
     ViewControllerRepresentable()
 }
+
+protocol a {
+    associatedtype DataModelForCell
+}

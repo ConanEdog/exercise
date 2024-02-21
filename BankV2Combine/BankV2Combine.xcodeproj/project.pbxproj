@@ -218,7 +218,6 @@
 		32CFFA052B5F61C800F7C9A8 /* BalanceView */ = {
 			isa = PBXGroup;
 			children = (
-				32CFFA282B610AA700F7C9A8 /* Result.swift */,
 				3272B7312B5E751300BF3623 /* BalanceView.swift */,
 				3272B7372B5E80C800BF3623 /* CurrencyView.swift */,
 			);
@@ -257,6 +256,7 @@
 		32CFFA192B5FB09300F7C9A8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				32CFFA282B610AA700F7C9A8 /* Result.swift */,
 				32CFFA1E2B5FB26000F7C9A8 /* Balance.swift */,
 				32CFFA202B5FB27B00F7C9A8 /* Message.swift */,
 				32CFFA222B5FB2A300F7C9A8 /* Favorite.swift */,

@@ -7,8 +7,8 @@
 
 import Foundation
 import Combine
-
-class HomeViewModel {
+// using UIKit with combine do not need to implement ObservabeObject
+class HomeViewModel: ObservableObject {
     
     @Published private(set) var balanceResult: BalanceResult = .init(totalUSD: "", totalKHR: "")
     @Published var balanceLoadingCompleted = false
