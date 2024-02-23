@@ -62,7 +62,8 @@ class FavoriteCollectionView: UICollectionView {
         // every group has one item, section width = 4 groups
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4), heightDimension: .fractionalHeight(2/3))
+        //to show the next hidden item
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4 * 0.92), heightDimension: .fractionalHeight(2/3))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/3))
