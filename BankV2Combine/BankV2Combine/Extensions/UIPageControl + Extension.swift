@@ -11,8 +11,8 @@ import Combine
 extension UIPageControl {
     
     var pageChangedPublisher: AnyPublisher<Int, Never> {
-        controlEventPublisher(for: .valueChanged).flatMap { _ in
-            Just(self.currentPage)
+        controlEventPublisher(for: .valueChanged).map { _ in
+            self.currentPage
         }.eraseToAnyPublisher()
     }
 }
