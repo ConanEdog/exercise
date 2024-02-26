@@ -211,6 +211,32 @@ class HomeViewController: UIViewController {
         ])
         view.layoutIfNeeded()
     }
+    // ContextMenu
+    private func makeMenu() -> UIMenu {
+        let save = UIAction(title: "Save", image: UIImage(systemName: "square.and.arrow.down"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { _ in
+            print("Save")
+        }
+        let copy = UIAction(title: "Copy", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .on) { _ in
+            print("Copy")
+        }
+        
+        return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [save, copy])
+    }
+    
+    private func makePreviewProvider(indexPath: IndexPath, cell: FavoriteCollectionViewCell) -> UIViewController {
+        let vc = UIViewController()
+        
+        let item = viewModel.favoriteItems[indexPath.row]
+        let imageView = UIImageView(image: UIImage(named: item.transType.rawValue))
+        imageView.contentMode = .scaleAspectFit
+        vc.view = imageView
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: cell.button.frame.width * 1.25, height: cell.button.frame.height * 1.25)
+        
+        vc.preferredContentSize = imageView.frame.size
+        vc.view.backgroundColor = .clear
+        return vc
+    }
 
 }
 
@@ -241,4 +267,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.reusedId, for: indexPath) as! HeaderView
         return headerView
     }
+    
+    //ContextMenuInteraction
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let indexPath = indexPaths.first else { return nil }
+        
+        if collectionView === favoriteCollectionView {
+            let cell = collectionView.cellForItem(at: indexPath) as! FavoriteCollectionViewCell
+            
+            return UIContextMenuConfiguration(identifier: nil) { [weak self] in
+                return self?.makePreviewProvider(indexPath: indexPath, cell: cell)
+            } actionProvider: { [weak self] _ in
+                return self?.makeMenu()
+            }
+        }
+
+        return nil
+    }
+    
+   
 }

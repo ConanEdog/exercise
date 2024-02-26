@@ -23,7 +23,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     private func commonInit() {
         contentView.addSubview(button)
-        
+        button.isUserInteractionEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
